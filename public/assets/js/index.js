@@ -53,7 +53,9 @@ var renderActiveNote = function() {
 var handleNoteSave = function() {
   var newNote = {
     title: $noteTitle.val(),
-    text: $noteText.val()
+    text: $noteText.val(),
+    // When saving note, assign it a random id
+    id: Math.floor(Math.random() * 9999999)
   };
 
   saveNote(newNote).then(function(data) {
@@ -128,6 +130,7 @@ var renderNoteList = function(notes) {
 // Gets notes from the db and renders them to the sidebar
 var getAndRenderNotes = function() {
   return getNotes().then(function(data) {
+    console.table(data);
     renderNoteList(data);
   });
 };
